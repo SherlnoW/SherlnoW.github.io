@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>JSON2Go</title>
+		<meta charset="UTF-8">
+		<script src="js/jquery.min.js"></script>
+		<script src="js/highlight.min.js"></script>
+		<script src="js/json-to-go.js"></script>
+		<script src="js/common.js"></script>
+		<script src="js/gofmt.js" async></script>
+		<link rel="stylesheet" href="css/tomorrow.highlight.css">
+		<link rel="stylesheet" href="css/common.css">
+	</head>
+	<body>
+		<table>
+			<tr>
+				<th style="width: 45%;">JSON</th>
+				<th style="width: 10%; font-size: 22px;">&#8594;</th>
+				<th style="width: 45%;">Go <label><input type="checkbox" id="inline" checked>Inline type definitions</label> <span class="copy" id="copy-btn">Copy to clipboard</span></th>
+			</tr>
+		</table>
+		<table>
+			<tr>
+				<td style="width: 50%;">
+					<div id="input" contenteditable></div>
+				</td>
+				<td style="width: 50%;">
+					<div id="output"></div>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>
