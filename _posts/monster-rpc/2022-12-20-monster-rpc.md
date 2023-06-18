@@ -1,3 +1,15 @@
+---
+layout: post
+title: 从零开始手写RPC框架
+date: 2022-12-20 01:00 +0700
+modified: 2022-12-20 01:00 +0700 16:49:47 +07:00
+description: 从零开始手写RPC框架
+tag:
+- RPC
+- software
+  image: /imgs/RPC框架.png
+---
+
 # 手写RPC框架
 
 ## 简要说明
@@ -30,6 +42,11 @@
     * 服务注册中心
 
 3. **RPC过程**
+
+<figure>
+<img src="{{ page.image }}" alt="ilustrasi repo yang mau diupdate">
+<figcaption>Fig 1. RPC框架.</figcaption>
+</figure>
 
 ![](imgs/RPC框架.png)
 
