@@ -8,7 +8,6 @@ comments: false
 
 Welcome to 妖怪呵呵豆的主页
 
-**may u needs ✨**
+** Contact With Me **
 
-- {{ bbowang221@163.com }}
-- github.com/{{ SherlnoW }}
+- bbowang221@163.com
