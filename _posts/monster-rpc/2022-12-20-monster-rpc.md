@@ -53,5 +53,5 @@
 
 ### ........
 
-[jekyll]{https://sherlnow.github.io/welcome-to-jekyll/}
+[jekyll](https://sherlnow.github.io/welcome-to-jekyll/)
 
