@@ -19,13 +19,13 @@ tag:
 
 1. RPC的基本过程是什么？
 
-   客户端调用服务端的一个方法，服务端通过执行本地方法得到返回值，并将返回值传递回客户端。
+客户端调用服务端的一个方法，服务端通过执行本地方法得到返回值，并将返回值传递回客户端。
 
 2. 怎样完成一个RPC？
 
-   以下是假设的服务背景：
-   服务端：拥有一张User表
-   客户端：通过传递想要查询的id给服务端，并得到服务端返回的User对象
+以下是假设的服务背景：
+服务端：拥有一张User表
+客户端：通过传递想要查询的id给服务端，并得到服务端返回的User对象
 
 ### 基础知识
 
@@ -103,11 +103,21 @@ tag:
 
    <img src="E:\java learning\RPCByHand\imgs\0_服务端启动.png" alt="0_服务端启动" style="zoom: 67%;" />
 
+   <figure>
+   <img src="" alt="服务端启动" >
+   <figcaption>Fig 1. 服务端启动.</figcaption>
+   </figure>
+
 2. 启动客户端，传输id查询User对象，服务端调用相应实现类提供服务，并返回结果给客户端
 
    <img src="E:\java learning\RPCByHand\imgs\0_客户端启动服务端提供服务.png" alt="0_客户端启动服务端提供服务" style="zoom: 60%;" />
 
    ![0_客户端接收结果](E:\java learning\RPCByHand\imgs\0_客户端接收结果.png)
+
+   <figure>
+   <img src="" alt="客户端启动服务端提供服务" >
+   <figcaption>Fig 1. 客户端启动服务端提供服务.</figcaption>
+   </figure>
 
 ### 不足之处
 
