@@ -58,18 +58,17 @@ Java动态代理机制中实现动态代理的核心为 InvocationHandler（接�
 ### service包
 
 * **UserService接口:** 客户端通过此接口对服务端的实现类进行调用。这里定义了两个抽象方法：getUserByUserId、insertUserId，分别负责使用UserId查询User和插入一条User。
-
 * **UserServiceImpl类:** 负责实现UserService接口中的具体功能，这里增加了插入一条User的功能。
 
 ### server包
 
 * **RPCServer类:** 服务端，负责解析客户端发来的request以及封装回复给客户端的response对象。与version0相比，这里在读取到客户端传来的request后，通过反射调用相应的方法，然后再进行封装，写入response对象，发送给客户端。
 
-```java
-Method method = userService.getClass()
-.getMethod(request.getMethodName(),request.getParamsTypes());
-Object invoke = method.invoke(userService, request.getParams());
-```
+    ```java
+    Method method = userService.getClass()
+    .getMethod(request.getMethodName(),request.getParamsTypes());
+    Object invoke = method.invoke(userService, request.getParams());
+    ```
 
 ### client包
 
