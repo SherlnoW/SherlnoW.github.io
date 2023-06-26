@@ -71,7 +71,6 @@ tag:
 用来存放服务端所提供的服务接口
 
 * **UserService接口:** 客户端通过调用此接口来调用服务端的实现类，以达到通过id查询User对象。
-
 * **UserServiceImpl类:** 实现UserService接口中的方法，具体实现通过id查询User对象的功能。
 
 ### server包
