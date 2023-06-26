@@ -89,16 +89,16 @@ tag:
 # 结果
 
 1. 启动服务端，监听8080端口
-<figure>
-<img src="https://s1.ax1x.com/2023/06/26/pCUBSvd.png" alt="服务端启动" >
-<figcaption>Fig 1. 服务端启动.</figcaption>
-</figure>
+   <figure>
+   <img src="https://s1.ax1x.com/2023/06/26/pCUBSvd.png" alt="服务端启动" >
+   <figcaption>Fig 1. 服务端启动.</figcaption>
+   </figure>
 
 2. 启动客户端，传输id查询User对象，服务端调用相应实现类提供服务，并返回结果给客户端
-<figure>
-<img src="https://s1.ax1x.com/2023/06/26/pCUBCDI.png" alt="客户端启动服务端提供服务" >
-<figcaption>Fig 2. 客户端启动服务端提供服务.</figcaption>
-</figure>
+   <figure>
+   <img src="https://s1.ax1x.com/2023/06/26/pCUBCDI.png" alt="客户端启动服务端提供服务" >
+   <figcaption>Fig 2. 客户端启动服务端提供服务.</figcaption>
+   </figure>
 
 # 不足之处
 
