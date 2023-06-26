@@ -7,6 +7,7 @@ tag:
 - RPC
 - Java
 ---
+
 # 待解决问题
 
 1. 增加客户端可以请求的远程服务
@@ -84,7 +85,7 @@ Java动态代理机制中实现动态代理的核心为 InvocationHandler（接�
     <figcaption>Fig 1. 服务端启动.</figcaption>
     </figure>
 
-2. 启动客户端，
+2. 启动客户端
     <figure>
     <img src="https://s1.ax1x.com/2023/06/26/pCUB9KA.png" alt="服务端提供服务" >
     <figcaption>Fig 2. 服务端提供服务.</figcaption>
