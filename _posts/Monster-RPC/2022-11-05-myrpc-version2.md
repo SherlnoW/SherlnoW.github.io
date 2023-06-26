@@ -15,14 +15,14 @@ tag:
 # 解决方案
 
 可以使用一个Map保存服务接口（key）和其对应的实现类（value）。
-    ```java
+
     UserService userService = new UserServiceImpl();
     BlogService blogService = new BlogServiceImpl();
     Map<String, Object>.put(".userService", userService);
     Map<String, Object>.put(".blogService", blogService);
     //可以通过request调用对应的服务
     Object service = map.get(request.getInterfaceName());
-    ```
+    
 
 # 背景知识
 
