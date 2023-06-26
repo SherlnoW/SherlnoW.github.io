@@ -31,14 +31,14 @@ tag:
 
 ### 基础知识
 
-##### Socket通信
+#### Socket通信
 
 基于TCP/IP网络层的一种传送方式，属于传输层
 * 首先，服务端初始化ServerSocket，然后对指定的端口进行绑定，接着对端口进行监听，
 * 通过调用 accept() 进行阻塞，此时，若客户端有一个 socket 连接到服务端，那么服务端
 * 通过监听和 accept() 可以与客户端进行连接。
 
-##### lombok
+#### lombok
 
 一个在Java开发过程中用注解的方式，简化了 JavaBean 的编写，避免了冗余和样板式代码而出现的插件。
 
@@ -49,13 +49,13 @@ tag:
 * @NoArgsConstructor：在类上标注，提供类的无参构造
 * @AllArgsConstructor：在类上标注，提供类的全参构造
 
-##### Serializable接口
+#### Serializable接口
 
 用于实现Java类的序列化操作而提供的一个语义级别的接口。
 
 实现了Serializable接口的类可以被ObjectOutPutStream转换为字节流，也可通过ObjectInputStream再将其解析为对象。
 
-##### BIO通信
+#### BIO通信
 
 同步阻塞I/O模式，数据的读取写入必须阻塞在一个线程内等待其完成。
 
@@ -63,7 +63,7 @@ tag:
 
 ### 具体实现
 
-###### common包
+##### common包
 
 用来存放客户端查询、服务端提供的数据（对象）
 
@@ -71,7 +71,7 @@ tag:
 
 User对象：客户端和服务端都已知，其中客户端想要得到这个pojo对象数据，服务端需要对此对象进行操作。（这里User对象属性包括id、userName、sex）
 
-###### service包
+##### service包
 
 用来存放服务端所提供的服务接口
 
@@ -83,7 +83,7 @@ User对象：客户端和服务端都已知，其中客户端想要得到这个p
 
 实现UserService接口中的方法，具体实现通过id查询User对象的功能。
 
-###### server包
+##### server包
 
 服务端，用来接收客户端的请求并提供相应的服务
 
@@ -91,11 +91,11 @@ User对象：客户端和服务端都已知，其中客户端想要得到这个p
 
 以BIO的方式监听Socket，如果有数据，则调用相应的实现类提供服务，并返回结果给客户端
 
-###### client包
+##### client包
 
 客户端，包含发送给服务端的请求以及得到的返回对象
 
-* RPCClient类
+* **RPCClient类**
 
 建立Socket连接，向服务端传输id，并得到返回的User对象。
 
