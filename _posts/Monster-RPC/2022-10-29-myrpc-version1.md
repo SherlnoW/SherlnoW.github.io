@@ -63,7 +63,6 @@ Java动态代理机制中实现动态代理的核心为 InvocationHandler（接�
 ### server包
 
 * **RPCServer类:** 服务端，负责解析客户端发来的request以及封装回复给客户端的response对象。与version0相比，这里在读取到客户端传来的request后，通过反射调用相应的方法，然后再进行封装，写入response对象，发送给客户端。
-
     ```java
     Method method = userService.getClass()
     .getMethod(request.getMethodName(),request.getParamsTypes());
