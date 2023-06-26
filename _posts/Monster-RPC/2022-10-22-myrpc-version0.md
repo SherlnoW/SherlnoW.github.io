@@ -64,48 +64,42 @@ tag:
 
 用来存放客户端查询、服务端提供的数据（对象）
 
-**User类:** User对象-客户端和服务端都已知，其中客户端想要得到这个pojo对象数据，服务端需要对此对象进行操作。（这里User对象属性包括id、userName、sex）
+* **User类:** User对象-客户端和服务端都已知，其中客户端想要得到这个pojo对象数据，服务端需要对此对象进行操作。（这里User对象属性包括id、userName、sex）
 
 ### service包
 
 用来存放服务端所提供的服务接口
 
-**UserService接口:** 客户端通过调用此接口来调用服务端的实现类，以达到通过id查询User对象。
+* **UserService接口:** 客户端通过调用此接口来调用服务端的实现类，以达到通过id查询User对象。
 
-**UserServiceImpl类:** 实现UserService接口中的方法，具体实现通过id查询User对象的功能。
+* **UserServiceImpl类:** 实现UserService接口中的方法，具体实现通过id查询User对象的功能。
 
 ### server包
 
 服务端，用来接收客户端的请求并提供相应的服务
 
-**RPCServer类:** 以BIO的方式监听Socket，如果有数据，则调用相应的实现类提供服务，并返回结果给客户端
+* **RPCServer类:** 以BIO的方式监听Socket，如果有数据，则调用相应的实现类提供服务，并返回结果给客户端
 
 ### client包
 
 客户端，包含发送给服务端的请求以及得到的返回对象
 
-**RPCClient类:** 建立Socket连接，向服务端传输id，并得到返回的User对象。
+* **RPCClient类:** 建立Socket连接，向服务端传输id，并得到返回的User对象。
 
 # 结果
 
 1. 启动服务端，监听8080端口
 
-   <img src="E:\java learning\RPCByHand\imgs\0_服务端启动.png" alt="0_服务端启动" style="zoom: 67%;" />
-
    <figure>
-   <img src="" alt="服务端启动" >
+   <img src="https://s1.ax1x.com/2023/06/26/pCUBSvd.png" alt="服务端启动" >
    <figcaption>Fig 1. 服务端启动.</figcaption>
    </figure>
 
 2. 启动客户端，传输id查询User对象，服务端调用相应实现类提供服务，并返回结果给客户端
 
-   <img src="E:\java learning\RPCByHand\imgs\0_客户端启动服务端提供服务.png" alt="0_客户端启动服务端提供服务" style="zoom: 60%;" />
-
-   ![0_客户端接收结果](E:\java learning\RPCByHand\imgs\0_客户端接收结果.png)
-
    <figure>
-   <img src="" alt="客户端启动服务端提供服务" >
-   <figcaption>Fig 1. 客户端启动服务端提供服务.</figcaption>
+   <img src="https://s1.ax1x.com/2023/06/26/pCUBCDI.png" alt="客户端启动服务端提供服务" >
+   <figcaption>Fig 2. 客户端启动服务端提供服务.</figcaption>
    </figure>
 
 # 不足之处
