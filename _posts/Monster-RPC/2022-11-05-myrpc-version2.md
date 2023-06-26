@@ -15,14 +15,14 @@ tag:
 # 解决方案
 
 可以使用一个Map保存服务接口（key）和其对应的实现类（value）。
-```java
-UserService userService = new UserServiceImpl();
-BlogService blogService = new BlogServiceImpl();
-Map<String, Object>.put(".userService", userService);
-Map<String, Object>.put(".blogService", blogService);
-//可以通过request调用对应的服务
-Object service = map.get(request.getInterfaceName());
-```
+    ```java
+    UserService userService = new UserServiceImpl();
+    BlogService blogService = new BlogServiceImpl();
+    Map<String, Object>.put(".userService", userService);
+    Map<String, Object>.put(".blogService", blogService);
+    //可以通过request调用对应的服务
+    Object service = map.get(request.getInterfaceName());
+    ```
 
 # 背景知识
 
@@ -59,14 +59,12 @@ Object service = map.get(request.getInterfaceName());
 
 * **ServiceProvider类:** 本质上是一个HashMap，用于存放服务端调用的接口名（key）和对应的实现类（value）。服务端启动后，暴露相关的实现类，根据request中的接口名（interface）调用相应的实现类。
     * provideServiceInterface(Object service) 方法：通过反射获得传入service的接口名。并将接口名和对应实现类存入 Map<String, Object\> interfaceProvider 字段中。
-
 * **RPCServer接口:** 把RPCSever抽象成一个接口，服务端实现这个接口即可，遵循开放封闭原则。
-    > 开放封闭原则：软件实体应当对扩展性开放，而对修改原代码关闭。
-
+> 开放封闭原则：软件实体应当对扩展性开放，而对修改原代码关闭。
 * **SimpleRPCServer类:** 实现了 RPCServer接口。使用Java原始的BIO监听模式，每当监听到一个request后，就创建一个线程进行处理。
 * **ThreadPoolRPCServer类:** 实现了 RPCServer接口。通过线程池实现服务端，同样采用Java原始的BIO监听模式。每当监听到一个request后，就通过线程池里的线程进行处理。
 * **WorkThread类:** 将对监听到的客户端的request进行解析、执行相应的服务以及返回response给客户端的功能从服务端代码中分离开来，遵循单一职责原则。
-  > 单一职责原则：一个对象应当只包含单一的职责，并且该职责被完整封装在一个类中。
+> 单一职责原则：一个对象应当只包含单一的职责，并且该职责被完整封装在一个类中。
 * **TestService类:** 服务端启动类，首先暴露相关服务的实现类，之后通过 ServiceProvider类将接口名和对应实现类存入 HashMap 中，启动服务端，开始监听。
 
 ### client包
