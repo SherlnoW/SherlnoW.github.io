@@ -23,8 +23,10 @@ Netty是一个基于NIO的高性能网络框架，用于开发高性能、高可
 **NIO**
 
 Java NIO实际上是多路复用IO，会有一个线程不断去轮询多个socket的状态，只有当socket真正有读写事件时，才真正调用实际的IO读写操作。这样，只有在真正有socket读写事件进行时，才会使用IO资源，大大减少了资源占用。
-
-   <img src="E:\java learning\RPCByHand\imgs\3_NIO.png" alt="3_NIO" style="zoom: 67%;" />
+    <figure>
+        <img src="https://s1.ax1x.com/2023/06/26/pCUBFVP.png" alt="NIO" >
+        <figcaption>Fig 1. 服务端启动.</figcaption>
+    </figure>
 
    Java NIO的核心部件包括：通道（Channels）、缓冲区（Buffers）、选择器（Selectors），这些组件共同组成了多路复用机制。其中，选择器可以注册到多个通道上，监听各个通道上发生的事件，并根据事件情况决定调用线程处理。而缓冲区用于和通道进行数据交互，实质是一个可以读写的内存块。
 
@@ -40,14 +42,14 @@ Netty是一个高性能的、异步通信的NIO框架，基于Java NIO的API实�
 * 高性能序列化协议：支持 protobuf 等高性能序列化协议。
 
 Netty基于Reactor模式，通过多路复用器接收并处理用户请求，内部实现了两个线程池：boss线程池和work线程池。其中，boss线程池负责处理请求的accept事件，当接收到accept事件请求时，把对应的socket封装到一个NioSocketChannel中，并交给work线程池，work线程池负责请求的读写事件，在每个NioEventGroup处理业务时，会使用 pipeline（管道），通过pipeline可以获取到对应channel，管道中维护了很多的Handler用于数据的处理。
-
-   <img src="E:\java learning\RPCByHand\imgs\3_Netty.png" alt="3_Netty" style="zoom:67%;" />
+    <figure>
+        <img src="https://s1.ax1x.com/2023/06/26/pCUBA58.png" alt="Netty" >
+        <figcaption>Fig 2. Netty.</figcaption>
+    </figure>
 
 Netty框架的使用通过Maven引入对应的依赖实现，常用的类和初始化操作如下：
 * **NioEventLoopGroup类:** 实际上是一个线程池，有可执行的Executor，同时继承了Iterable迭代器，里面包含了多个NioEventLoop。一个NioEventLoop可以处理多个Channel中的IO操作，但每个NioEventLoop只绑定一个线程，因此每一个NioEventLoop都绑定了一个Selector，负责决定当前的线程为哪些Channel提供服务。
-* **ServerBootstrap类:** 通过链式操作初始化Netty服务器，负责监听端口的socket。ServerBoostrap用一个ServerSocketChannelFactory来实例化，可以选择NIO和BIO两种方式，但都需要两个线程池作为参数来进行初始化。ServerBootstrap.bind()方法可以绑定指定端口的socket连接，一个ServerBoosttap可以绑定多个端口，该方法会创建一个serverchannel，将当前的channel注册到eventloop上。
-
-    ServerBoostrap常用的初始化设置如下：
+* **ServerBootstrap类:** 通过链式操作初始化Netty服务器，负责监听端口的socket。ServerBoostrap用一个ServerSocketChannelFactory来实例化，可以选择NIO和BIO两种方式，但都需要两个线程池作为参数来进行初始化。ServerBootstrap.bind()方法可以绑定指定端口的socket连接，一个ServerBoosttap可以绑定多个端口，该方法会创建一个serverchannel，将当前的channel注册到eventloop上。ServerBoostrap常用的初始化设置如下：
   * group()：设置两个线程组
   * channel()：设置服务器的通道实现，这里传入NioServerSocketChannel负责new Socket
   * childHandler()：给Work Group的NioEventLoop对应的管道设置处理器
@@ -87,13 +89,7 @@ TCP沾包问题是指发送方发送的若干个数据包到接收方时沾成�
 
 * **RPCServer接口:** 实现服务端的类必需实现该接口。
 * **NettyRPCServer类:** 实现RPCServer接口，作为服务端，负责监听和发送数据。按照Netty的工作原理定义了两个NioEventLoopGroup：boosGroup和workGroup，前者负责处理连接请求，后者负责实际业务的处理。之后通过ServerBootstrap完成Netty服务端的初始化。接着开启同步阻塞，并进行死循环监听。
-
-* **NettyServerInitializer类:** 负责进行初始化，主要负责序列化的编码和解码，同时需要解决Netty的沾包问题。
-
-    Netty基于流并通过Channel和Buffer实现消息传递，因此Object也需要转换成Channel和Buffer来传递。这里使用Netty提供默认的编码解码工具：ObejctEncoder()和ObjectDecoder()，这是一组Handler。而如果要实现自定义的编码解码，也应该在Handler中实现。 
-
-    使用LengthFieldBasedFrameDecoder、LengthFieldPrepender实现解码器和编码器可以实现基于长度的数据传输，解决沾包问题。
-
+* **NettyServerInitializer类:** 负责进行初始化，主要负责序列化的编码和解码，同时需要解决Netty的沾包问题。Netty基于流并通过Channel和Buffer实现消息传递，因此Object也需要转换成Channel和Buffer来传递。这里使用Netty提供默认的编码解码工具：ObejctEncoder()和ObjectDecoder()，这是一组Handler。而如果要实现自定义的编码解码，也应该在Handler中实现。使用LengthFieldBasedFrameDecoder、LengthFieldPrepender实现解码器和编码器可以实现基于长度的数据传输，解决沾包问题。
 * **NettyRPCServerHandler类:** 负责针对不同的请求数据类型调用handler进行处理。自定义一个Handler需要继承Netty规定好的HandlerAdapter，这里使用SimpleChannelInboundHandler，传入泛型为RPCRequest。
     * channelRead0()：重写方法，负责读取客户端发送的消息，并通过反射调用服务端实现类，并将结果response写入到缓存，并刷新。
     * exceptionCaught()：重写方法，负责处理异常和关闭通道。
@@ -119,12 +115,16 @@ TCP沾包问题是指发送方发送的若干个数据包到接收方时沾成�
 # 运行结果
 
 1. 基于Netty的服务端启动后，接收到客户端发送的request，并返回response
-
-   ![3_服务端启动](E:\java learning\RPCByHand\imgs\3_服务端启动.png)
+    <figure>
+        <img src="https://s1.ax1x.com/2023/06/26/pCUBe2Q.png" alt="服务端启动" >
+        <figcaption>Fig 3. 服务端启动.</figcaption>
+    </figure>
 
 2. 客户端接收到服务端发送的response
-
-   ![3_客户端接收结果](E:\java learning\RPCByHand\imgs\3_客户端接收结果.png)
+    <figure>
+        <img src="https://s1.ax1x.com/2023/06/26/pCUBZ8g.png" alt="客户端接收结果" >
+        <figcaption>Fig 4. 客户端接收结果.</figcaption>
+    </figure>
 
 # 不足之处
 
