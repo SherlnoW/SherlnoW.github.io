@@ -23,10 +23,10 @@ Netty是一个基于NIO的高性能网络框架，用于开发高性能、高可
 **NIO**
 
 Java NIO实际上是多路复用IO，会有一个线程不断去轮询多个socket的状态，只有当socket真正有读写事件时，才真正调用实际的IO读写操作。这样，只有在真正有socket读写事件进行时，才会使用IO资源，大大减少了资源占用。
-    <figure>
-        <img src="https://s1.ax1x.com/2023/06/26/pCUBFVP.png" alt="NIO" >
-        <figcaption>Fig 1. 服务端启动.</figcaption>
-    </figure>
+<figure>
+    <img src="https://s1.ax1x.com/2023/06/26/pCUBFVP.png" alt="NIO" style="zoom: 67%;" >
+    <figcaption>Fig 1. 服务端启动.</figcaption>
+</figure>
 
    Java NIO的核心部件包括：通道（Channels）、缓冲区（Buffers）、选择器（Selectors），这些组件共同组成了多路复用机制。其中，选择器可以注册到多个通道上，监听各个通道上发生的事件，并根据事件情况决定调用线程处理。而缓冲区用于和通道进行数据交互，实质是一个可以读写的内存块。
 
@@ -42,10 +42,10 @@ Netty是一个高性能的、异步通信的NIO框架，基于Java NIO的API实�
 * 高性能序列化协议：支持 protobuf 等高性能序列化协议。
 
 Netty基于Reactor模式，通过多路复用器接收并处理用户请求，内部实现了两个线程池：boss线程池和work线程池。其中，boss线程池负责处理请求的accept事件，当接收到accept事件请求时，把对应的socket封装到一个NioSocketChannel中，并交给work线程池，work线程池负责请求的读写事件，在每个NioEventGroup处理业务时，会使用 pipeline（管道），通过pipeline可以获取到对应channel，管道中维护了很多的Handler用于数据的处理。
-    <figure>
-        <img src="https://s1.ax1x.com/2023/06/26/pCUBA58.png" alt="Netty" >
-        <figcaption>Fig 2. Netty.</figcaption>
-    </figure>
+<figure>
+    <img src="https://s1.ax1x.com/2023/06/26/pCUBA58.png" alt="Netty" >
+    <figcaption>Fig 2. Netty.</figcaption>
+</figure>
 
 Netty框架的使用通过Maven引入对应的依赖实现，常用的类和初始化操作如下：
 * **NioEventLoopGroup类:** 实际上是一个线程池，有可执行的Executor，同时继承了Iterable迭代器，里面包含了多个NioEventLoop。一个NioEventLoop可以处理多个Channel中的IO操作，但每个NioEventLoop只绑定一个线程，因此每一个NioEventLoop都绑定了一个Selector，负责决定当前的线程为哪些Channel提供服务。
