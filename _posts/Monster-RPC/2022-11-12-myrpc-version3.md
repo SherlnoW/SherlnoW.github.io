@@ -44,9 +44,7 @@ Netty基于Reactor模式，通过多路复用器接收并处理用户请求，�
    <img src="E:\java learning\RPCByHand\imgs\3_Netty.png" alt="3_Netty" style="zoom:67%;" />
 
 Netty框架的使用通过Maven引入对应的依赖实现，常用的类和初始化操作如下：
-
 * **NioEventLoopGroup类:** 实际上是一个线程池，有可执行的Executor，同时继承了Iterable迭代器，里面包含了多个NioEventLoop。一个NioEventLoop可以处理多个Channel中的IO操作，但每个NioEventLoop只绑定一个线程，因此每一个NioEventLoop都绑定了一个Selector，负责决定当前的线程为哪些Channel提供服务。
-
 * **ServerBootstrap类:** 通过链式操作初始化Netty服务器，负责监听端口的socket。ServerBoostrap用一个ServerSocketChannelFactory来实例化，可以选择NIO和BIO两种方式，但都需要两个线程池作为参数来进行初始化。ServerBootstrap.bind()方法可以绑定指定端口的socket连接，一个ServerBoosttap可以绑定多个端口，该方法会创建一个serverchannel，将当前的channel注册到eventloop上。
 
     ServerBoostrap常用的初始化设置如下：
@@ -89,6 +87,7 @@ TCP沾包问题是指发送方发送的若干个数据包到接收方时沾成�
 
 * **RPCServer接口:** 实现服务端的类必需实现该接口。
 * **NettyRPCServer类:** 实现RPCServer接口，作为服务端，负责监听和发送数据。按照Netty的工作原理定义了两个NioEventLoopGroup：boosGroup和workGroup，前者负责处理连接请求，后者负责实际业务的处理。之后通过ServerBootstrap完成Netty服务端的初始化。接着开启同步阻塞，并进行死循环监听。
+
 * **NettyServerInitializer类:** 负责进行初始化，主要负责序列化的编码和解码，同时需要解决Netty的沾包问题。
 
     Netty基于流并通过Channel和Buffer实现消息传递，因此Object也需要转换成Channel和Buffer来传递。这里使用Netty提供默认的编码解码工具：ObejctEncoder()和ObjectDecoder()，这是一组Handler。而如果要实现自定义的编码解码，也应该在Handler中实现。 
@@ -99,9 +98,7 @@ TCP沾包问题是指发送方发送的若干个数据包到接收方时沾成�
     * channelRead0()：重写方法，负责读取客户端发送的消息，并通过反射调用服务端实现类，并将结果response写入到缓存，并刷新。
     * exceptionCaught()：重写方法，负责处理异常和关闭通道。
     * getResponse()：类似于WordThread中的getResponse()，通过反射调用对应的方法。
-
 * **TestServer类:** 服务端启动类，这里改为Netty版本。
-
 * ServiceProvider类: 与上一个版本相同，使用Map保存接口名和实现类。
 
 ### clien包
@@ -114,14 +111,9 @@ TCP沾包问题是指发送方发送的若干个数据包到接收方时沾成�
 
 接下来使用Netty对客户端进行改进。
 
-* **NettyRPCClient类:** 客户端实现类，实现了RPCClient接口。这里传入的Bootstrap类似于服务端中的ServerBootstrap。之后进行客户端的初始化（与服务端类似）。
-
-  在重写sendRequest()方法时，需要注意，由于Netty都是异步传输，发送request会立刻返回，但得到的返回并不是相对应的response，因此，这里在建立通信连接并发送数据后，通过给channel设计别名，获取特定名字的channel中的内容。
-
+* **NettyRPCClient类:** 客户端实现类，实现了RPCClient接口。这里传入的Bootstrap类似于服务端中的ServerBootstrap。之后进行客户端的初始化（与服务端类似）。在重写sendRequest()方法时，需要注意，由于Netty都是异步传输，发送request会立刻返回，但得到的返回并不是相对应的response，因此，这里在建立通信连接并发送数据后，通过给channel设计别名，获取特定名字的channel中的内容。
 * **NettyClientInitializer类:** 采用与服务端相同的编码、解码方式。
-
 * **NettyClientHandler类:** 自定义的客户端Handler，在重写的channelRead0()方法中，通过AttributeKey给channel设计别名，让sendRequest读取对应的response。AttributeMap是一个数组+链表结构的线程安全的Map，是绑定在Channl或ChannelHandlerContext上的一个附件，前者的AttributeMap是共享的，而后者的AttributeMap是独有的。可以通过AttributeKey（key）找到对应的Attribute（value）。
-
 * **TestClient类:** 客户端启动类，这里改用Netty版本。
 
 # 运行结果
