@@ -85,7 +85,6 @@ tag:
 ### client包
 
 * **NettyClientInitializer类:** 与上一版本不同的是，pipline这里加入自定义的编解码器，同时在编码器中选择序列化方式。
-
 * RPCClient接口、RPCClientProxy类、NettyRPCClient类、NettyClientHandler类、TestClient类与上一版本相同。
 
 # 运行结果
