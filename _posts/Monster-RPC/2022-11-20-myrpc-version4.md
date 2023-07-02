@@ -135,7 +135,7 @@ RPC可能支持多种序列化方式，因此，协议里需要含有序列化�
 2. 客户端发送request后接收到服务端发回的response，客户端使用是Kryo序列化器
 <figure>
     <img src="https://s1.ax1x.com/2023/06/26/pCUslVI.png" alt="4_客户端接收结果" style="zoom: 67%;" >
-    <figcaption>Fig 1. 客户端接收结果.</figcaption>
+    <figcaption>Fig 2. 客户端接收结果.</figcaption>
 </figure>
 
 # 不足之处
