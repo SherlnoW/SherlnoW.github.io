@@ -28,11 +28,11 @@ Nacos支持两种方式的注册中心：持久化和非持久化存储服务信
 
 Nacos同时实现了CP和AP两种数据的一致性策略，AP模式下服务以临时实例注册，CP模式下服务以永久实例注册。
 
-2. **注册中心的对比**
-    <figure>
-        <img src="https://s1.ax1x.com/2023/07/02/pCDMg9s.png" alt="7_注册中心对比" style="zoom: 67%;" >
-        <figcaption>Fig 1. 注册中心对比.</figcaption>
-    </figure>
+**注册中心的对比**
+<figure>
+    <img src="https://s1.ax1x.com/2023/07/02/pCDMg9s.png" alt="7_注册中心对比" style="zoom: 67%;" >
+    <figcaption>Fig 1. 注册中心对比.</figcaption>
+</figure>
 
 # 具体实现
 
@@ -55,7 +55,6 @@ Nacos同时实现了CP和AP两种数据的一致性策略，AP模式下服务以
 ### register包
 
 * **NacosServiceRegister类:** Nacos作为注册中心的实现类，实现了ServiceRegister接口。通过NamingFactory连接Nacos。NamingService通过registerInstance()方法传入服务名、IP地址和端口号，像Nacos注册服务；通过getAllInstances()方法传入服务名获得提供该服务的所有提供者列表，并通过负载均衡算法选择其中一个。
-
 * ServiceRegister接口 与上一个版本相同。
 
 ### loadbalance包
@@ -110,13 +109,12 @@ Nacos同时实现了CP和AP两种数据的一致性策略，AP模式下服务以
         <figcaption>Fig 8. 客户端启动.</figcaption>
     </figure>  
 
-4. 通过查看Nacos控制台，可以看到此时的订阅者列表不再是空。可以查看订阅者的IP地址、端口号以及客户端版本等信息。
+4. 通过查看Nacos控制台，可以看到此时的订阅者列表不再是空。可以查看订阅者的IP地址、端口号以及客户端版本等信息。也可以通过服务列表中的订阅者选项，可以看到具体服务的订阅者信息。
     <figure>
         <img src="https://s1.ax1x.com/2023/06/26/pCUsGPf.png" alt="7_Nacos订阅者列表" style="zoom: 67%;" >
         <figcaption>Fig 9. Nacos订阅者列表.</figcaption>
     </figure>  
 
-   也可以通过服务列表中的订阅者选项，可以看到具体服务的订阅者信息。
 
 # 不足之处
 
