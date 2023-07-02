@@ -127,22 +127,22 @@ Consul是一款使用Go语言编写的开源工具，内置了服务注册和发
 # 运行结果
 
 1. 在启动 zkServer.cmd 和 zkCli.cmd后，启动服务端，与zookeeper连接成功，注册中心进行对应处理。
-<figure>
-    <img src="https://s1.ax1x.com/2023/06/26/pCUs1at.png" alt="5_服务端启动" style="zoom: 67%;" >
-    <figcaption>Fig 3. 服务端启动.</figcaption>
-</figure>
+    <figure>
+        <img src="https://s1.ax1x.com/2023/06/26/pCUs1at.png" alt="5_服务端启动" style="zoom: 67%;" >
+        <figcaption>Fig 3. 服务端启动.</figcaption>
+    </figure>
 
 2. 客户端与zookeeper连接成功后，注册中心进行对应处理。
-<figure>
-    <img src="https://s1.ax1x.com/2023/06/26/pCUs3IP.png" alt="5_客户端启动" style="zoom: 67%;" >
-    <figcaption>Fig 3. 客户端启动.</figcaption>
-</figure>
+    <figure>
+        <img src="https://s1.ax1x.com/2023/06/26/pCUs3IP.png" alt="5_客户端启动" style="zoom: 67%;" >
+        <figcaption>Fig 3. 客户端启动.</figcaption>
+    </figure>
 
 3. 通过`ls /`指令查看，可以看到此时多了一个节点MyRPC。再通过`ls /MyRPC`指令查看，可以看到所注册服务。
-<figure>
-    <img src="https://s1.ax1x.com/2023/06/26/pCUsuKH.png" alt="5_zk" style="zoom: 67%;" >
-    <figcaption>Fig 3. zk.</figcaption>
-</figure>
+    <figure>
+        <img src="https://s1.ax1x.com/2023/06/26/pCUsuKH.png" alt="5_zk" style="zoom: 67%;" >
+        <figcaption>Fig 3. zk.</figcaption>
+    </figure>
 
 # 不足之处
 
