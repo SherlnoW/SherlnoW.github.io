@@ -3,6 +3,16 @@ layout: default
 home: true
 ---
 
+<style>
+    .hero {
+        background-image: url('https://s1.ax1x.com/2023/06/18/pC1uyBF.png');
+        /* 设置背景图像的大小、重复方式等样式 */
+        background-size: cover;  /* 自动调整背景图像的大小以覆盖整个元素 */
+        background-repeat: no-repeat;  /* 不重复背景图像 */
+    }
+</style>
+
+
 <h3 class="posts-item-note" aria-label="Recent Posts">最近的文章</h3>
 {%- for post in site.posts limit: site.number_of_posts -%}
 <article class="post-item">
