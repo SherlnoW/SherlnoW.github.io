@@ -37,7 +37,6 @@ tag:
 ### register包
 
 * **ZkServiceRegister类:** 添加LoadBalance接口字段，选择实现该接口的负载均衡类。在serviceDiscovery()方法中，引入所选择的负载均衡器，选择出服务器地址。
-
 * ServiceRegister类
 
 ### client包、codec包、common包、service包、server包
@@ -47,16 +46,16 @@ tag:
 # 运行结果
 
 1. 在启动 zkServer.cmd 和 zkCli.cmd后，启动服务端，与zookeeper连接成功，注册中心进行对应处理。
-<figure>
-    <img src="https://s1.ax1x.com/2023/06/26/pCUsYRS.png" alt="6_服务端启动" style="zoom: 67%;" >
-    <figcaption>Fig 1. 服务端启动.</figcaption>
-</figure>
+    <figure>
+        <img src="https://s1.ax1x.com/2023/06/26/pCUsYRS.png" alt="6_服务端启动" style="zoom: 67%;" >
+        <figcaption>Fig 1. 服务端启动.</figcaption>
+    </figure>
 
 2. 客户端与zookeeper连接成功后，注册中心进行对应处理，可以看到采用随机负载均衡，选择了不同的服务器。
-<figure>
-    <img src="https://s1.ax1x.com/2023/06/26/pCUstxg.png" alt="6_客户端启动" style="zoom: 67%;" >
-    <figcaption>Fig 2. 客户端启动.</figcaption>
-</figure>
+    <figure>
+        <img src="https://s1.ax1x.com/2023/06/26/pCUstxg.png" alt="6_客户端启动" style="zoom: 67%;" >
+        <figcaption>Fig 2. 客户端启动.</figcaption>
+    </figure>
 
 # 不足之处
 
