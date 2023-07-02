@@ -135,13 +135,13 @@ Consul是一款使用Go语言编写的开源工具，内置了服务注册和发
 2. 客户端与zookeeper连接成功后，注册中心进行对应处理。
     <figure>
         <img src="https://s1.ax1x.com/2023/06/26/pCUs3IP.png" alt="5_客户端启动" style="zoom: 67%;" >
-        <figcaption>Fig 3. 客户端启动.</figcaption>
+        <figcaption>Fig 4. 客户端启动.</figcaption>
     </figure>
 
-3. 通过`ls /`指令查看，可以看到此时多了一个节点MyRPC。再通过`ls /MyRPC`指令查看，可以看到所注册服务。
+    通过`ls /`指令查看，可以看到此时多了一个节点MyRPC。再通过`ls /MyRPC`指令查看，可以看到所注册服务。
     <figure>
         <img src="https://s1.ax1x.com/2023/06/26/pCUsuKH.png" alt="5_zk" style="zoom: 67%;" >
-        <figcaption>Fig 3. zk.</figcaption>
+        <figcaption>Fig 5. zk.</figcaption>
     </figure>
 
 # 不足之处
