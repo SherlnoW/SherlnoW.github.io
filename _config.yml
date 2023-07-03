@@ -1,7 +1,8 @@
 # Site settings
 title: SherlnoW # site title
 description: >- # site description
-  这是 SherlnoW 的博客，github 在 <a href="https://sherlnow.github.io/" target="_blank" rel="noopener">@github</a>.
+  Keys: 简单  高效  努力  坚持  
+  Trying to do better🚀
 lang: en-US # default lang
 timezone: Asia/Shanghai # set your timezone
 image: assets/img/ogp.png # This image used for Open Graph more info https://ogp.me/
@@ -12,7 +13,8 @@ mode: dark # default theme "dark" | "light"
 author:
   name: Sherlno # author name
   bio: >- # tell to the world
-    这是 SherlnoW 的博客，github 在 <a href="https://sherlnow.github.io/" target="_blank" rel="noopener">@github</a>.
+    Keys: 简单  高效  努力  坚持  
+    Trying to do better🚀
   username: username # general username
   github: github_username # github username
   twitter: twitter_username # twitter username
