@@ -14,8 +14,7 @@ mode: dark # default theme "dark" | "light"
 author:
   name: Sherlno # author name
   bio: >- # tell to the world
-    Keys: 简单  高效  努力  坚持
-    
+    Keys: 简单  高效  努力  坚持                  
     Trying to do better🚀
   username: username # general username
   github: github_username # github username
